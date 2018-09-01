@@ -25,6 +25,8 @@ provider:
 # you can overwrite defaults here
   region: us-east-2
   stage: dev
+  environment:
+    MAYBE_A_KEY: notAnImportantKey
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -63,6 +65,16 @@ functions:
       - http:
           path: first-enpoint
           method: POST
+
+  envVariables:
+    handler: envVariables.handler
+    memorySize: 128
+    events:
+      - http:
+          path: env-variables
+          method: GET
+    environment:
+      MY_CRAZY_KEY: keyyyyyy123
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
